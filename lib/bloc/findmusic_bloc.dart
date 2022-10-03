@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:musicfindapp/API/music_api.dart';
 import 'package:record/record.dart';
-import 'package:http/http.dart' as http;
+
 
 part 'findmusic_event.dart';
 part 'findmusic_state.dart';
 final record = Record();
+final api = APIRepository();
 
 class FindmusicBloc extends Bloc<FindmusicEvent, FindmusicState> {
   FindmusicBloc() : super(FindmusicInitial()) {
@@ -26,23 +30,21 @@ class FindmusicBloc extends Bloc<FindmusicEvent, FindmusicState> {
 
         // Stop recording
         final filename = await record.stop();
-        
-        var request = http.MultipartRequest('POST', Uri.parse('https://api.audd.io/'));
-        request.fields['api_token'] = '93e9fc0f6dffe5c83f5b6275aa525ad3';
-        request.fields['return'] = 'apple_music,spotify';
-        String last = filename!.split("/").last;
-        request.files.add(
-          await http.MultipartFile.fromPath(
-            'file',
-            filename,
-            filename: last,
-          ),
-        );
-        var res = await request.send();
+        //print(filename);
+        final res = await api.findSong(filename!);
         print(res);
+        
+        
 
         
       }
     });
+    // on<AddFavorite>((event, emit) {
+    //   final found = state.favorites.firstWhere((element) => element['title'] == event.title && element['artist'] == event.artist, orElse: () => null);
+    //   if(found){
+    //    return emit(FindMusicFavoritesError(errorMessage: 'La canción ya está en favoritos'));
+    //   }
+    //   final favoriteMusic = [state.favorites,]
+    // });
   }
 }

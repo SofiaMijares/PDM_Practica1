@@ -10,6 +10,10 @@ const DetailScreen({Key? key}) : super(key: key);
         return Scaffold(
             appBar: AppBar(
                 title: const Text('Título de la canción'),
+                actions: [
+                  IconButton(onPressed: (){}, icon: const Icon(Icons.favorite_border)),
+                  // IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert)),
+                ],
             ),
             body: Column(
               children: [

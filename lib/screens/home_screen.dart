@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           return Column(
           children: [
             
-            const SizedBox(height: 150,),
+            //const SizedBox(height: 150,),
             //Center the text
             Center(child: Text( state.isRecording ? 'Escuchando...' : 'Toque para escuchar',style: Theme.of(context).textTheme.headline4,)),
             const SizedBox(height: 100),
@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
                       iconSize: 100,
                       onPressed: () {
                         //Start recording
+                        // Navigator.pushNamed(context, 'details', arguments: '1');
                         BlocProvider.of<FindmusicBloc>(context).add(IsRecording(isRecording: !state.isRecording));
                         // record.start();
                       },
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
       
-              const SizedBox(height: 100,),
+              //const SizedBox(height: 100,),
       
               CircleAvatar(
                 backgroundColor: Colors.grey[100],

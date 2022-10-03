@@ -5,7 +5,8 @@ abstract class FindmusicState {
   final Record record = Record(); 
   final bool isRecording ;
   final List favorites ;
-  FindmusicState({this.isRecording = false, this.favorites = const []});
+  final String message;
+  FindmusicState({this.isRecording = false, this.favorites = const [],this.message = ''});
 }
 
 class FindmusicInitial extends FindmusicState {
@@ -29,6 +30,12 @@ class FindmusicFavorites extends FindmusicState {
   FindmusicFavorites({required List favorites}) : super(isRecording: false, favorites: favorites);
 }
 
-// class FindmusicFavoritesAdd extends FindmusicState {
-//   FindmusicFavoritesAdd({required Object newFavorite}) : super(isRecording: false, favorites: [favorites]);
-// }
+class FindMusicFavoritesError extends FindmusicState {
+  final String errorMessage = '';
+  FindMusicFavoritesError({required String errorMessage}) : super(message: errorMessage);
+}
+
+class FindmusicFavoritesAdd extends FindmusicState {
+  final Object newFavorite = {};
+  FindmusicFavoritesAdd({required Object newFavorite}) ;
+}

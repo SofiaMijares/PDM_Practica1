@@ -15,7 +15,7 @@ const FavoriteScreen({Key? key}) : super(key: key);
             ),
             body: BlocBuilder<FindmusicBloc,FindmusicState>(
               builder: (context, state) {
-                return ListView(
+                return state.favorites.isNotEmpty ? ListView(
                   children: state.favorites.map((e) => ListTile(
                     title: Text(e.title),
                     subtitle: Text(e.artist),
@@ -26,7 +26,7 @@ const FavoriteScreen({Key? key}) : super(key: key);
 
                   )
 
-                );
+                ) : const Center(child: Text('No hay favoritos'));
               }),
         );
     }
