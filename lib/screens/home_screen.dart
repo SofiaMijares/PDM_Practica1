@@ -11,15 +11,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //Create a column with 3 children
 
       body:BlocBuilder<FindmusicBloc,FindmusicState>(
         builder: (context, state) {
           return Column(
           children: [
-            
-            //const SizedBox(height: 150,),
-            //Center the text
             Center(child: Text( state.isRecording ? 'Escuchando...' : 'Toque para escuchar',style: Theme.of(context).textTheme.headline4,)),
             const SizedBox(height: 100),
             //Create a circled button
@@ -31,8 +27,7 @@ class HomeScreen extends StatelessWidget {
                 repeat: true,
                 showTwoGlows: true,
                 repeatPauseDuration: const Duration(milliseconds: 100),
-                child: Material(     // Replace this child with your own
-                  // elevation: 10.0,
+                child: Material( 
                   shape: const CircleBorder(),
                   child: CircleAvatar(
                     backgroundColor: Colors.grey[100],
@@ -42,10 +37,7 @@ class HomeScreen extends StatelessWidget {
                       icon: state.isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
                       iconSize: 100,
                       onPressed: () {
-                        //Start recording
-                        // Navigator.pushNamed(context, 'details', arguments: '1');
                         BlocProvider.of<FindmusicBloc>(context).add(IsRecording(isRecording: !state.isRecording));
-                        // record.start();
                       },
                     ),
                     
@@ -53,7 +45,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
       
-              //const SizedBox(height: 100,),
       
               CircleAvatar(
                 backgroundColor: Colors.grey[100],
@@ -63,7 +54,6 @@ class HomeScreen extends StatelessWidget {
                   icon: const Icon(Icons.favorite),
                   iconSize: 40,
                   onPressed: () {
-                    //navigate to favorites screen
                     Navigator.pushNamed(context, 'favorites');
                   },
                 ),

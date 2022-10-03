@@ -11,7 +11,7 @@ const FavoriteScreen({Key? key}) : super(key: key);
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: const Text('FavoriteScreen'),
+                title: const Text('Favoritos'),
             ),
             body: BlocBuilder<FindmusicBloc,FindmusicState>(
               builder: (context, state) {
